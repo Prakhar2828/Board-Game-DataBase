@@ -1,0 +1,71 @@
+/**
+ *  This is a subclass of Unit that supports storing this 
+ *  information. A special ability might be a bonus that this
+ *  unit provides to other units fighting with it, a special 
+ *  move it can perform, extra defense against certain kinds 
+ *  of opponents, etc. 
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.21)
+ */
+public class EnhancedUnit extends Unit
+{
+    private String specialRule;
+
+    /**
+     * Initializes a newly created EnhancedUnit object.
+     * 
+     * @param name is the name of the Enhanced Unit object.
+     * 
+     * @param points is the points value assosciated with the 
+     * Enahnced Unit object. 
+     */
+    public EnhancedUnit(String name, int points)
+    {
+        super(name, points);
+        this.specialRule = null;
+        /*# Do any work to initialize your class here. */
+    }
+
+    /**
+     * Returns the special rule associated with the 
+     * EnhancedUnit object.
+     * 
+     * @return the special rule associated with the 
+     * EnhanceUnit object as a String
+     */
+    public String getSpecialRule()
+    {
+        return specialRule;
+    }
+    
+    /**
+     * Sets the special rule associated with the 
+     * EnhancedUnit object.
+     * 
+     * @param adjustment the new special rule to be 
+     * set as a String
+     */
+    public void setSpecialRule(String adjustment)
+    {
+        this.specialRule = adjustment;
+    }
+    
+    /**
+     * Override the toString() method to call the inherited 
+     * version of toString(), and if there is any special rule 
+     * in this enhanced unit, it should add it on the end.
+     * 
+     * @return a string representation of this enhanced unit 
+     * and its attributes.
+     */
+    public String toString()
+    {
+        String str = super.toString();
+        if (specialRule != null)
+        {
+            str += " special rule:[" + specialRule + "]";
+        }
+        return str;
+    }
+}
