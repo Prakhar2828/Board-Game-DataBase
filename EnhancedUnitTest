@@ -1,0 +1,101 @@
+import student.micro.*;
+import static org.assertj.core.api.Assertions.*;
+
+/**
+ *  This test class is testing the EnhancedUnit class to ensure
+ *  that all it's fields are initialized correctly. Additionally, 
+ *  the constructor is being tested to ensure that it works
+ *  correctly. Lastly, every method is being tested to prevent
+ *  any behavioral issues. 
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.21)
+ */
+public class EnhancedUnitTest
+    extends TestCase
+{
+    private EnhancedUnit unit;
+
+    /**
+     * Creates a new EnhancedUnitTest test object.
+     */
+    public EnhancedUnitTest()
+    {
+        // The constructor is usually empty in unit tests, since it runs
+        // once for the whole class, not once for each test method.
+        // Per-test initialization should be placed in setUp() instead.
+    }
+
+    /**
+     * Sets up the test fixture.
+     * Called before every test case method.
+     */
+    public void setUp()
+    {
+        unit = new EnhancedUnit("Unit 1", 10);
+    }
+
+    /**
+     * Tests the constructor of the object by asserting that
+     * the initial values of the object are correct.
+     */
+    public void testConstructor()
+    {
+        String name = unit.getName();
+        int points = unit.getPoints();
+        String specialRule = unit.getSpecialRule();
+        
+        assertThat(points).isEqualTo(10);
+        assertThat(name).isEqualTo("Unit 1");
+        assertThat(specialRule).isEqualTo(null);
+    }
+    
+    /**
+     * Tests the setSpecialRule() method by setting a new
+     * special rule for the EnhancedUnit object and asserting
+     * that the new value is correct. 
+     */
+    public void testSetSpecialRule()
+    {
+        unit.setSpecialRule("power");
+        String specialRule = unit.getSpecialRule();
+        
+        assertThat(specialRule).isEqualTo("power");
+    }
+    
+    /**
+     * This method tests the toString() method of the Unit 
+     * class with no special rule applied. 
+     */
+    public void testToStringWithNoSpecialRule()
+    {   
+        String a = unit.toString();
+        
+        assertThat(a).isEqualTo("Unit 1 (10, 2, 2)");
+        
+        unit.setName("Rob");
+        unit.setPoints(20);
+        String b = unit.toString();
+        
+        assertThat(b).isEqualTo("Rob (20, 2, 2)");
+    }
+    
+    /**
+     * This method tests the toString() method of the Unit 
+     * class with a special rule applied.
+     */
+    public void testToStringWithSpecialRule()
+    {   
+        unit.setSpecialRule("Rule 1");
+        String a = unit.toString();
+        
+        assertThat(a).isEqualTo("Unit 1 (10, 2, 2) special rule:[Rule 1]");
+        
+        unit.setName("Rob");
+        unit.setPoints(20);
+        unit.setSpecialRule("Rule 2");
+        String b = unit.toString();
+        
+        assertThat(b).isEqualTo("Rob (20, 2, 2) special rule:[Rule 2]");
+    }
+}
