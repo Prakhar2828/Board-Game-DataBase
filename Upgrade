@@ -1,0 +1,83 @@
+/**
+ *  This class represents any kind of upgrade that can be 
+ *  applied to a unit in the game. 
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.20)
+ */
+public class Upgrade
+    implements GameElement
+{
+    private String name;
+    private int points;
+
+    /**
+     * Initializes a newly created Upgrade object.
+     * 
+     * @param name is the name of the Upgrade object
+     * 
+     * @param points is the points value associated with the 
+     * Upgrade object. 
+     */
+    public Upgrade(String name, int points)
+    {
+        super();
+        this.name = name;
+        this.points = points;
+        /*# Do any work to initialize your class here. */
+    }
+
+    /**
+     * This method returns the name of the Upgrade object
+     * 
+     * @return the name of the Upgrade object as a String
+     */
+    public String getName()
+    {
+        return name;
+    }
+    
+    /**
+     * This method sets the name of the Upgrade object to the 
+     * given value.
+     * 
+     * @param adjustment the new name to be set as a String
+     */
+    public void setName(String adjustment)
+    {
+        this.name = adjustment;
+    }
+    
+    /**
+     * This method returns the points of the Upgrade object. 
+     * 
+     * @return the points that the Upgrade object has
+     */
+    public int getPoints()
+    {
+        return points;
+    }
+    
+    /**
+     * Sets the number of points for the Upgrade object.
+     * 
+     * @param adjustment the new number of points to be 
+     * set as an integer
+     */
+    public void setPoints(int adjustment)
+    {
+        this.points = adjustment;
+    }
+    
+    /**
+     * Overriding toString() so that it returns a string with 
+     * a name of the object and its associated points.
+     * 
+     * @return a string with the name and points of the Upgrade
+     * object.
+     */
+    public String toString()
+    {
+        return name + " (" + points + ")";
+    }
+}
