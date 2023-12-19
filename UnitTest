@@ -1,0 +1,180 @@
+import student.micro.*;
+import static org.assertj.core.api.Assertions.*;
+import java.util.List;
+
+/**
+ *  This test class is ensuring that the constructor for the 
+ *  Unit object works correctly and the attributes are initialized 
+ *  correctly. Additionally, all the methods in the class are 
+ *  tested to ensure that there are no behavioral issues.
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.21)
+ */
+public class UnitTest
+    extends TestCase
+{
+    private Unit pawn;
+
+    /**
+     * Creates a new UnitTest test object.
+     */
+    public UnitTest()
+    {
+        // The constructor is usually empty in unit tests, since it runs
+        // once for the whole class, not once for each test method.
+        // Per-test initialization should be placed in setUp() instead.
+    }
+
+    /**
+     * Sets up the test fixture.
+     * Called before every test case method.
+     */
+    public void setUp()
+    {
+        pawn = new Unit("Unit 1", 10);
+    }
+
+    /**
+     * Tests the setName() method by setting a new name for the 
+     * pawn and asserting that the new value is correct.
+     */
+    public void testSetName()
+    {
+        pawn.setName("123456789");
+        String name = pawn.getName();
+        
+        assertThat(name).isEqualTo("123456789");
+    }
+    
+    /**
+     * Tests the setPoints() method by setting a new number of 
+     * points for the pawn and asserting that the new value 
+     * is correct.
+     */
+    public void testSetPoints()
+    {
+        pawn.setPoints(111);
+        int points = pawn.getPoints();
+        
+        assertThat(points).isEqualTo(111);
+    }
+    
+    /**
+     * Tests the setQuality() method by setting a new quality 
+     * value for the pawn and asserting that the new value 
+     * is correct.
+     */
+    public void testSetQuality()
+    {
+        pawn.setQuality(123);
+        int quality = pawn.getQuality();
+        
+        assertThat(quality).isEqualTo(123);
+    }
+    
+    /**
+     * Tests the setDefense() method by setting a new defense 
+     * value for the pawn and asserting that the new value 
+     * is correct.
+     */
+    public void testSetDefense()
+    {
+        pawn.setDefense(123);
+        int defense = pawn.getDefense();
+        
+        assertThat(defense).isEqualTo(123);
+    }
+    
+    /** 
+     * Tests the constructor of the Unit object by asserting 
+     * that the initial values of the object are correct.
+     */
+    public void testConstructor()
+    {
+        int defense = pawn.getDefense();
+        int quality = pawn.getQuality();
+        int points = pawn.getPoints();
+        String name = pawn.getName();
+        List<Upgrade> upgrades = pawn.getUpgrades();
+        int size = upgrades.size();
+        
+        assertThat(name).isEqualTo("Unit 1");
+        assertThat(points).isEqualTo(10);
+        assertThat(quality).isEqualTo(2);
+        assertThat(defense).isEqualTo(2);
+        assertThat(size).isEqualTo(0);
+        assertThat(upgrades).isNotEqualTo(null);
+    }
+    
+    /**
+     * Tests the addUpgrade() method of the Unit class.
+     * it checks if an Upgrade object is added correctly to the 
+     * Unit object's list of upgrades, if the points attribute
+     * of the Unit object is updated accordingly, and if the
+     * list of upgrades is not empty.
+     */
+    public void testAddUpgrade()
+    {
+        Upgrade upgrade = new Upgrade("Test Upgrade", 5);
+        pawn.addUpgrade(upgrade);
+        
+        List<Upgrade> upgrades = pawn.getUpgrades();
+        int points = pawn.getPoints();
+        
+        assertThat((upgrades).isEmpty()).isFalse();
+        assertThat((upgrades).contains(upgrade)).isTrue();
+        assertThat(points).isEqualTo(15);
+    }
+    
+    /**
+     * Tests the removeUpgrade method of the Unit class.
+     * It checks if an Upgrade object is removed correctly 
+     * from the Unit object's list of upgrades, if the points
+     * attribute of the Unit object is updated accordingly, 
+     * and if the list of upgrades is empty.
+     */
+    public void testRemoveUpgrade()
+    {
+        Upgrade upgrade = new Upgrade("Test Upgrade", 5);
+        
+        List<Upgrade> upgrades = pawn.getUpgrades();
+        pawn.addUpgrade(upgrade);
+        
+        assertThat((upgrades).contains(upgrade)).isTrue();
+        
+        pawn.removeUpgrade(upgrade);
+        int points = pawn.getPoints();
+        
+        assertThat((upgrades).contains(upgrade)).isFalse();
+        assertThat(upgrades).isEmpty();
+        assertThat(points).isEqualTo(10);
+    }
+    
+    /**
+     * Tests the toString method of the Unit class.
+     * It checks if the string representation of the Unit 
+     * object is correct,without upgrades added.
+     */
+    public void testToStringWithoutUpgrades()
+    {
+        String a = pawn.toString();
+        
+        assertThat(a).isEqualTo("Unit 1 (10, 2, 2)");
+    }
+    
+    /**
+     * Tests the toString method of the Unit class.
+     * It checks if the string representation of the Unit 
+     * object is correct,with upgrades added.
+     */
+    public void testToStringWithUpgrades()
+    {
+        Upgrade upgrade = new Upgrade("Test Upgrade", 5);
+        pawn.addUpgrade(upgrade);
+        String a = pawn.toString();
+        
+        assertThat(a).isEqualTo(
+            "Unit 1 (15, 2, 2) upgrades:[Test Upgrade (5)]");
+    }
+}
