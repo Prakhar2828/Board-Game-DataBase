@@ -1,0 +1,180 @@
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ * Represents any kind of playable unit in the game. This
+ * class will define the features that all units have in 
+ * common. 
+ *
+ *  @author Prakhar28 (Prakhar28)
+ *  @version (2023.03.20)
+ */
+public class Unit 
+    implements GameElement
+{
+    private String name;
+    private int points;
+    private int quality;
+    private int defense;
+    private List<Upgrade> upgrades;
+
+    /**
+     * Initializes a newly created Unit object.
+     * 
+     * @param name is the name of the Unit object. 
+     * 
+     * @param points is the points value associated with the 
+     * Unit object.
+     */
+    public Unit(String name, int points)
+    {
+        super();
+        this.name = name;
+        this.points = points;
+        this.quality = 2;
+        this.defense = 2;
+        this.upgrades = new ArrayList<Upgrade>();
+    }
+
+    /**
+     * This method returns the name of the Unit object
+     * 
+     * @return the name of the Unit object as a String
+     */
+    public String getName()
+    {
+        return name;
+    }
+    
+    /**
+     * This method sets the name of the Unit object to the 
+     * given value.
+     * 
+     * @param adjustment the new name to be set as a String
+     */
+    public void setName(String adjustment)
+    {
+        this.name = adjustment;
+    }
+    
+    /**
+     * This method returns the points of the Unit object. 
+     * 
+     * @return the points that the Unit object has
+     */
+    public int getPoints()
+    {
+        int upgradePoints = 0;
+        for (Upgrade upgrade : upgrades)
+        {
+            upgradePoints += upgrade.getPoints();
+        }
+        return points + upgradePoints;
+    }
+    
+    /**
+     * Sets the number of points for the Unit object.
+     * 
+     * @param adjustment the new number of points to be 
+     * set as an integer
+     */
+    public void setPoints(int adjustment)
+    {
+        this.points = adjustment;
+    }
+    
+    /**
+     * Returns the quality value of the Unit object
+     * 
+     * @return the quality value of the Unit 
+     * object as an integer
+     */
+    public int getQuality()
+    {
+        return quality;
+    }
+    
+    /**
+     * Sets the quality value of the Unit object.
+     * 
+     * @param adjustment the new quality value to be set as an integer
+     */
+    public void setQuality(int adjustment)
+    {
+        this.quality = adjustment;
+    }
+    
+    /**
+     * Returns the defense value of the Unit object.
+     * 
+     * @return the defense value of the object as an integer
+     */
+    public int getDefense()
+    {
+        return defense;
+    }
+    
+    /**
+     * Sets the defense value of the Unit object.
+     * 
+     * @param adjustment the new defense value to be set as an integer
+     */
+    public void setDefense(int adjustment)
+    {
+        this.defense = adjustment;
+    }
+    
+    /**
+     * Returns the list of upgrades that the object has.
+     * 
+     * @return the list of upgrades as a list.
+     */
+    public List<Upgrade> getUpgrades()
+    {
+        return upgrades;
+    }
+    
+    /**
+     * takes an Upgrade as a parameter and adds it to the list.
+     * 
+     * @param upgrade the Upgrade to be added.  
+     */
+    public void addUpgrade(Upgrade upgrade)
+    {
+        upgrades.add(upgrade);
+    }
+    
+    /**
+     * removes an Upgrade from the Upgrade list if it is present.
+     * 
+     * @param upgrade the Upgrade to be removed. 
+     */
+    public void removeUpgrade(Upgrade upgrade)
+    {
+        upgrades.remove(upgrade);
+    }
+    
+    /**
+     * Returns a string with the name, points, quality and 
+     * defense of the unit. If the unit has upgrades, they are
+     * added to the string inside square brackets.
+     * 
+     * @return a string representation of this unit and
+     * its attributes.
+     */
+    public String toString()
+    {
+        int totalPoints = this.getPoints();
+        String a = name + " (" + totalPoints + ", " + quality + ", " 
+            + defense;
+        if (!upgrades.isEmpty())
+        {
+            a += ") upgrades:" + upgrades.toString();
+        }
+        if (upgrades.isEmpty())
+        {
+            a += ")";
+        }
+        return a;
+    }
+}
