@@ -1,0 +1,94 @@
+import student.micro.*;
+import static org.assertj.core.api.Assertions.*;
+
+/**
+ *  This class is testing the Upgrade object's constructor to 
+ *  ensure that all initial attributes are correctly intialized. 
+ *  This class also tests the methods in the Upgrade class to 
+ *  ensure that there are no behavior issues. 
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.21)
+ */
+public class UpgradeTest
+    extends TestCase
+{
+    private Upgrade unit;
+
+    /**
+     * Creates a new UpgradeTest test object.
+     */
+    public UpgradeTest()
+    {
+        // The constructor is usually empty in unit tests, since it runs
+        // once for the whole class, not once for each test method.
+        // Per-test initialization should be placed in setUp() instead.
+    }
+
+    /**
+     * Sets up the test fixture.
+     * Called before every test case method.
+     */
+    public void setUp()
+    {
+        unit = new Upgrade("Rob", 10);
+    }
+
+    /** 
+     * Tests the constructor of the object by asserting that 
+     * the initial values of the object are correct.
+     */
+    public void testConstructor()
+    {
+        String name = unit.getName();
+        int points = unit.getPoints();
+        
+        assertThat(name).isEqualTo("Rob");
+        assertThat(points).isEqualTo(10);
+    }
+    
+    /**
+     * Tests the setPoints() method by setting a new number of 
+     * points for the object and asserting that the new value 
+     * is correct.
+     */
+    public void testSetPoints()
+    {
+        unit.setPoints(20);
+        int points = unit.getPoints();
+        
+        assertThat(points).isEqualTo(20);
+    }
+    
+    /**
+     * Tests the setName() method by setting a new name for 
+     * the object and asserting that the new value is correct.
+     */
+    public void testSetName()
+    {
+        unit.setName("prakhar");
+        String name = unit.getName();
+        
+        assertThat(name).isEqualTo("prakhar");
+    }
+    
+    /**
+     * This method tests the toString() method of the Upgrade class.
+     * It first checks if the string representation of the 
+     * Upgrade object is correct for the default values, then
+     * it checks if the string representation of the object is
+     * updated correctly when new values are set.
+     */
+    public void testToString()
+    {
+        String a = unit.toString();
+        
+        assertThat(a).isEqualTo("Rob (10)");
+        
+        unit.setName("Arnold");
+        unit.setPoints(20);
+        String b = unit.toString();
+        
+        assertThat(b).isEqualTo("Arnold (20)");
+    }
+}
