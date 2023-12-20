@@ -1,0 +1,88 @@
+import student.micro.*;
+import static org.assertj.core.api.Assertions.*;
+
+/**
+ *  Ensures that the army class works appropriately and all 
+ *  the methods in the class do not contain bugs so that it can
+ *  be used without errors arising. 
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.27)
+ */
+public class ArmyTest
+    extends TestCase
+{
+    private Army army;
+
+    /**
+     * Creates a new ArmyTest test object.
+     */
+    public ArmyTest()
+    {
+        // The constructor is usually empty in unit tests, since it runs
+        // once for the whole class, not once for each test method.
+        // Per-test initialization should be placed in setUp() instead.
+    }
+
+    /**
+     * Sets up the test fixture.
+     * Called before every test case method.
+     */
+    public void setUp()
+    {
+        army = new Army("First Army", "Lebron James", "Blue");
+    }
+
+    /**
+     * Tests the constructor of the Army class by creating a 
+     * new Army object with valid parameters and checks that 
+     * the army name, player name, and faction are set correctly.
+     * This test ensures that the constructor initializes the 
+     * fields correctly and the inherited constructor 
+     * from the Squad class is called.
+     */
+    public void testConstuctor()
+    {
+        String n = army.getName();
+        assertThat(n).isEqualTo("First Army");
+        String a = army.getPlayerName();
+        assertThat(a).isEqualTo("Blue");
+        String b = army.getFaction();
+        assertThat(b).isEqualTo("Lebron James");
+    }
+    
+    /**
+     * Tests the setPlayerName() method of the Army class.
+     * Checks if the method sets the player name correctly.
+     */
+    public void testSetPlayerName()
+    {
+        army.setPlayerName("Stephen Curry");
+        String n = army.getPlayerName();
+        assertThat(n).isEqualTo("Stephen Curry");
+    }
+    
+    /**
+     * Tests the setFaction() method of the Army class.
+     * Checks if the method sets the faction correctly.
+     */
+    public void testSetFaction()
+    {
+        army.setFaction("Pink");
+        String n = army.getFaction();
+        assertThat(n).isEqualTo("Pink");
+    }
+    
+    /**
+     * Tests the toString() method of the Army class. 
+     * Checks if the method returns the correct string representation
+     * of the army object and all its attributes.
+     */
+    public void testToString()
+    {
+        String expected = "player:Blue, faction:Lebron James," 
+            + " army:First Army (0, 2, 2) units:[]";
+        String a = army.toString();
+        assertThat(a).isEqualTo(expected);
+    }
+}
