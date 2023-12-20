@@ -1,0 +1,98 @@
+import java.util.ArrayList;
+import java.util.List;
+/**
+ *  This class represents a squad or group of units that work together,
+ *  kind of like a larger unit composed of multiple characters/pieces. 
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.20)
+ */
+public class Squad extends EnhancedUnit
+{
+    private List<Unit> units;
+
+    /**
+     * Initializes a newly created Squad object.
+     * 
+     * @param name is the name of the Unit.
+     */
+    public Squad(String name)
+    {
+        super(name, 0);
+        this.units = new ArrayList<Unit>();
+    }
+
+    /**
+     * This method returns the list of units that the squad holds.
+     * 
+     * @return the list of units that are part of the squad.
+     */
+    public List<Unit> getUnits()
+    {
+        return units;
+    }
+
+    /**
+     * This method adds a Unit to the list of units that the 
+     * squad holds.
+     * 
+     * @param unit is the unit that is added to the list.
+     */
+    public void addUnit(Unit unit)
+    {
+        units.add(unit);
+    }
+    
+    /**
+     * This method removes a Unit to the list of units that 
+     * the squad holds.
+     * 
+     * @param unit is the unit that is removed from the list.
+     */
+    public void removeUnit(Unit unit)
+    {
+        units.remove(unit);
+    }
+    
+    /**
+     * Overrides the getPoints() method so that it returns the
+     * sum of the points of all units in the squad plus the sum 
+     * of any upgrades that have been applied to the squad itself
+     * 
+     * @return the points of the squad after all units and
+     * upgrades are taken into consideration.
+     */
+    public int getPoints()
+    {
+        int totalPoints = super.getPoints();
+        for (Unit unit : units)
+        {
+            totalPoints += unit.getPoints();
+        }
+        return totalPoints;
+    }
+    
+    /**
+     * Overrides the toString() method to call the inherited 
+     * version of the toString() method, and then add the list 
+     * of units contained in the squad on the end.
+     * 
+     * @return the string representation of this squad and
+     * its attributes.
+     */
+    public String toString()
+    {
+        String a = super.toString();
+        a += " units:[";
+        for (Unit unit : units)
+        {
+            a += unit.toString();
+            if (units.indexOf(unit) != units.size() - 1)
+            {
+                a += ", ";
+            }
+        }
+        a += "]";
+        return a;
+    }
+}
