@@ -1,0 +1,30 @@
+/**
+ *  A subclass of EnhancedUnit that is extra durable and capable.
+ *  As an enhanced unit, a monster can have a special rule that 
+ *  represents a special move, extra resistance to certain 
+ *  opponents, etc. However, unlike heroes, monsters don't 
+ *  inspire their teammates--perhaps their teammates are even 
+ *  afraid of them.
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.20)
+ */
+public class Monster extends EnhancedUnit
+{
+    /**
+     * Initializes a newly created Monster object.
+     * 
+     * @param name is the name of the Monster object. 
+     * 
+     * @param points is the points value associated with the 
+     * Monster object. 
+     */
+    public Monster(String name, int points)
+    {
+        super(name, points);
+        this.setQuality(4);
+        this.setDefense(4);
+        /*# Do any work to initialize your class here. */
+    }
+
+}
