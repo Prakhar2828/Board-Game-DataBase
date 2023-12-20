@@ -1,0 +1,27 @@
+/**
+ *  This is a subclass of EnhancedUnit that is extra durable 
+ *  and capable. Heroes can boost the capabilities of other 
+ *  units close to them, so their "special rule" often includes
+ *  modifiers for nearby units.
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.20)
+ */
+public class Hero extends EnhancedUnit
+{
+    /**
+     * Initializes a newly created Hero object.
+     * 
+     * @param name is the name of the Hero object.
+     * 
+     * @param points is the points value associated with the 
+     * Hero object.
+     */
+    public Hero(String name, int points)
+    {
+        super(name, points);
+        this.setDefense(5);
+        this.setQuality(5);
+    }
+
+}
