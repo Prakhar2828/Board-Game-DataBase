@@ -1,0 +1,160 @@
+import student.micro.*;
+import static org.assertj.core.api.Assertions.*;
+import java.util.ArrayList;
+import java.util.List;
+
+/**
+ *  This class tests all the methods in the squad class to ensure
+ *  that the squad class works correctly.
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.27)
+ */
+public class SquadTest
+    extends TestCase
+{
+    private Squad squad;
+    private Unit unit1;
+    private Unit unit2;
+    private Upgrade upgrade;
+
+    /**
+     * Creates a new SquadTest test object.
+     */
+    public SquadTest()
+    {
+        // The constructor is usually empty in unit tests, since it runs
+        // once for the whole class, not once for each test method.
+        // Per-test initialization should be placed in setUp() instead.
+    }
+
+    /**
+     * Sets up the test fixture.
+     * Called before every test case method.
+     */
+    public void setUp()
+    {
+        squad = new Squad("Test Squad");
+        unit1 = new Unit("Unit 1", 10);
+        unit2 = new Unit("Unit 2", 15);
+        upgrade = new Upgrade("Upgrade A", 5);
+    }
+
+    /**
+     * This method tests the functionality of the getUnits() 
+     * method of the Squad class.
+     */
+    public void testGetUnits()
+    {
+        List<Unit> expectedUnits = new ArrayList<Unit>();
+        List<Unit> squadUnits = squad.getUnits();
+        
+        assertThat(expectedUnits).isEqualTo(squadUnits);
+        
+        expectedUnits.add(unit1);
+        squad.addUnit(unit1);
+        
+        assertThat(expectedUnits).isEqualTo(squadUnits);
+        
+        expectedUnits.add(unit2);
+        squad.addUnit(unit2);
+        
+        assertThat(expectedUnits).isEqualTo(squadUnits);
+    }
+
+    /**
+     * Tests the behavior of the addUnit() method of the 
+     * Squad class.
+     */
+    public void testAddUnit()
+    {
+        List<Unit> squadUnits = squad.getUnits();
+        
+        assertThat((squadUnits).contains(unit1)).isFalse();
+        
+        squad.addUnit(unit1);
+        
+        assertThat((squadUnits).contains(unit1)).isTrue();
+        
+        squad.addUnit(unit2);
+        
+        assertThat((squadUnits).contains(unit2)).isTrue();
+    }
+    
+    /**
+     * This method tests the functionality of the removeUnit()
+     * method in the Squad class. It verifies that units are 
+     * correctly removed from the squad and that the squad's 
+     * unit list is updated accordingly. It also tests that 
+     * the contains() method in List is working as expected.
+     */
+    public void testRemoveUnit()
+    {
+        squad.addUnit(unit1);
+        squad.addUnit(unit2);
+        List<Unit> squadUnits = squad.getUnits();
+        
+        assertThat((squadUnits).contains(unit1)).isTrue();
+        
+        squad.removeUnit(unit1);
+        
+        assertThat((squadUnits).contains(unit1)).isFalse();
+        
+        assertThat((squadUnits).contains(unit2)).isTrue();
+        
+        squad.removeUnit(unit2);
+        
+        assertThat((squadUnits).contains(unit2)).isFalse();
+    }
+    
+    /**
+     * This method tests the calculation of points for a squad
+     * of units. It checks if the initial number of points is
+     * 0, and if adding a unit to the squad increases the points 
+     * by the appropriate amount. It also checks if adding an 
+     * upgrade to the squad increases the points by the 
+     * appropriate amount.
+     */
+    public void testGetPoints()
+    {
+        int point = squad.getPoints();
+        assertThat(point).isEqualTo(0);
+        
+        squad.addUnit(unit1);
+        int point1 = squad.getPoints();
+        assertThat(point1).isEqualTo(10);
+        
+        squad.addUnit(unit2);
+        int point2 = squad.getPoints();
+        assertThat(point2).isEqualTo(25);
+        
+        squad.addUpgrade(upgrade);
+        int point3 = squad.getPoints();
+        assertThat(point3).isEqualTo(30);
+    }
+    
+    /**
+     * This method tests the toString() method of the Squad 
+     * class. It checks whether the method correctly returns the
+     * string representation of the Squad object, including 
+     * its name, size, and units. It does this by creating a new
+     * Squad object and adding units to it, then calling the 
+     * toString() method at each stage and checking whether the
+     * returned string matches the expected value.
+     */
+    public void testToString()
+    {
+        String a = squad.toString();
+        assertThat(a).isEqualTo("Test Squad (0, 2, 2) units:[]");
+        
+        squad.addUnit(unit1);
+        String b = squad.toString();
+        assertThat(b).isEqualTo(
+            "Test Squad (10, 2, 2) units:[" + unit1.toString() + "]");
+        
+        squad.addUnit(unit2);
+        String c = squad.toString();
+        assertThat(c).isEqualTo("Test Squad (25, 2, 2) units:[" 
+            + unit1.toString() + ", " + unit2.toString() + "]");
+    }
+}
