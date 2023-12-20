@@ -1,0 +1,82 @@
+/**
+ *  This is a subclass of Squad that allows for larger units
+ *  and consists of a series of squads and larger units, which
+ *  can be represented as a list.
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.27)
+ */
+public class Army extends Squad
+{
+    private String playerName;
+    private String faction;
+
+    /**
+     * Initializes a newly created Army object.
+     * 
+     * @param armyName the name of the army
+     * @param playerName the name of the player who plays the army
+     * @param faction the faction where the army originates
+     */
+    public Army(String armyName, String faction, String playerName)
+    {
+        super(armyName);
+        this.playerName = playerName;
+        this.faction = faction;
+    }
+
+    /**
+     * Returns the name of the player who plays this army.
+     * 
+     * @return the name of the player as a String
+     */
+    public String getPlayerName()
+    {
+        return playerName;
+    }
+    
+    /**
+     * Sets the name of the player who plays this army.
+     * 
+     * @param playerName the new name of the player as a String
+     */
+    public void setPlayerName(String playerName)
+    {
+        this.playerName = playerName;
+    }
+    
+    /**
+     * Returns the faction where this army originates
+     * 
+     * @return the faction as a String
+     */
+    public String getFaction()
+    {
+        return faction;
+    }
+    
+    /**
+     * Sets the faction where this army originates
+     * 
+     * @param faction the new faction as a String
+     */
+    public void setFaction(String faction)
+    {
+        this.faction = faction;
+    }
+    
+    /**
+     * Overrides the toString() to call the inherited version 
+     * of toString(), and then add the player's name and the
+     * faction on the front.
+     * 
+     * @return the string representation of the army object 
+     * and all its attributes.
+     */
+    public String toString()
+    {
+        String a = super.toString();
+        return "player:" + playerName + ", faction:" + faction 
+            + ", army:" + a;
+    }
+}
