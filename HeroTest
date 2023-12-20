@@ -1,0 +1,52 @@
+import student.micro.*;
+import static org.assertj.core.api.Assertions.*;
+
+/**
+ *  This test class is ensuring that the constructor works 
+ *  correctly and that all initial values of the Hero object
+ *  are correctly initialized.
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.21)
+ */
+public class HeroTest
+    extends TestCase
+{
+    private Hero unit;
+
+    /**
+     * Creates a new HeroTest test object.
+     */
+    public HeroTest()
+    {
+        // The constructor is usually empty in unit tests, since it runs
+        // once for the whole class, not once for each test method.
+        // Per-test initialization should be placed in setUp() instead.
+    }
+
+    /**
+     * Sets up the test fixture.
+     * Called before every test case method.
+     */
+    public void setUp()
+    {
+        unit = new Hero("Chan", 10);
+    }
+
+    /** 
+     * Tests the constructor of the object by asserting that 
+     * the initial values of the object are correct.
+     */
+    public void testConstructor()
+    {
+        String name = unit.getName();
+        int points = unit.getPoints();
+        int quality = unit.getQuality();
+        int defense = unit.getDefense();
+        
+        assertThat(name).isEqualTo("Chan");
+        assertThat(points).isEqualTo(10);
+        assertThat(quality).isEqualTo(5);
+        assertThat(defense).isEqualTo(5);
+    }
+}
