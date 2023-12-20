@@ -1,0 +1,52 @@
+import student.micro.*;
+import static org.assertj.core.api.Assertions.*;
+
+/**
+ *  This test class is testing the constructor of the Monster 
+ *  object to ensure that all the initial values of the object 
+ *  are initialized correctly. 
+ *
+ *  @author Prakhar Pandey (Prakhar28)
+ *  @version (2023.03.21)
+ */
+public class MonsterTest
+    extends TestCase
+{
+    private Monster unit;
+
+    /**
+     * Creates a new MonsterTest test object.
+     */
+    public MonsterTest()
+    {
+        // The constructor is usually empty in unit tests, since it runs
+        // once for the whole class, not once for each test method.
+        // Per-test initialization should be placed in setUp() instead.
+    }
+
+    /**
+     * Sets up the test fixture.
+     * Called before every test case method.
+     */
+    public void setUp()
+    {
+        unit = new Monster("Jake", 10);
+    }
+
+    /** 
+     * Tests the constructor of the object by asserting that 
+     * the initial values of the object are correct.
+     */
+    public void testConstructor()
+    {
+        String name = unit.getName();
+        int points = unit.getPoints();
+        int quality = unit.getQuality();
+        int defense = unit.getDefense();
+        
+        assertThat(name).isEqualTo("Jake");
+        assertThat(points).isEqualTo(10);
+        assertThat(quality).isEqualTo(4);
+        assertThat(defense).isEqualTo(4);
+    }
+}
